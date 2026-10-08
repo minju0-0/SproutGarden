@@ -51,7 +51,6 @@
                         <span class="badge-chip badge-chip-emerald">🌱 Living plants</span>
                         <span class="badge-chip badge-chip-sky">🌳 Goal trees</span>
                         <span class="badge-chip badge-chip-amber">🌤️ Weather forecast</span>
-                        <span class="badge-chip badge-chip-rose">🤖 AI garden advisor</span>
                     </div>
                 </div>
 
@@ -118,12 +117,12 @@
             </div>
         </section>
 
-        <!-- 4 Pillars of the Garden -->
+        <!-- 3 Pillars of the Garden -->
         <section id="features" class="section-container pillars-section">
             <div class="container">
                 <div class="section-heading reveal">
-                    <h2>Four ways your garden never lets you lie to yourself.</h2>
-                    <p>Not icons and promises — this is what those four pieces actually look like inside the app.</p>
+                    <h2>Three ways your garden never lets you lie to yourself.</h2>
+                    <p>Not icons and promises — this is what those three pieces actually look like inside the app.</p>
                 </div>
 
                 <div class="pillars-grid reveal delay-150">
@@ -154,17 +153,6 @@
                                     <div class="progress-fill" style="width: 100%;"></div>
                                 </div>
                                 <span class="goal-sparkle">✨ 100% funded!</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="icon-badge icon-badge-amber">💬</div>
-                        <h3>Garden Advisor</h3>
-                        <p>An aggregated digest of your numbers — never your raw transactions — feeds a handful of sharp, specific notes. Advice, not a chat wall.</p>
-                        <div class="card-demo">
-                            <div class="advisor-bubble">
-                                <p>"Your Groceries plant grew fast this week — want to move $20 into Savings?"</p>
                             </div>
                         </div>
                     </div>
@@ -383,13 +371,13 @@
     // ---- Hero weather demo: click to cycle conditions ----
     private int weatherIndex = 0;
 
-    private sealed record WeatherState(string Icon, string Title, string Sub, string BgClass, string BorderClass, string TextClass, string SubClass);
+    private sealed record WeatherState(WeatherCondition Condition, string Icon, string Title, string Sub, string BgClass, string BorderClass, string TextClass, string SubClass);
 
     private readonly WeatherState[] weatherStates = new[]
     {
-        new WeatherState("☀️", "Sunny — Garden is healthy", "You're on track. Keep it up.", "bg-[#ebf8f1]", "border-[#c8edd9]", "text-[#1e6643]", "text-[#4a7c61]"),
-        new WeatherState("⛅", "Cloudy — a little close to the cap", "Ease up on Dining Out this week.", "bg-[#fdf6e3]", "border-[#f2e2ad]", "text-[#82661c]", "text-[#9c822a]"),
-        new WeatherState("⛈️", "Stormy — you're over budget", "Time to move money between plants.", "bg-[#fdecee]", "border-[#f6c9ce]", "text-[#9c2738]", "text-[#b95a68]"),
+        new WeatherState(WeatherCondition.Sunny, "☀️", "Sunny — Garden is healthy", "You're on track. Keep it up.", "bg-[#ebf8f1]", "border-[#c8edd9]", "text-[#1e6643]", "text-[#4a7c61]"),
+        new WeatherState(WeatherCondition.Cloudy, "⛅", "Cloudy — a little close to the cap", "Ease up on Dining Out this week.", "bg-[#fdf6e3]", "border-[#f2e2ad]", "text-[#82661c]", "text-[#9c822a]"),
+        new WeatherState(WeatherCondition.Stormy, "⛈️", "Stormy — you're over budget", "Time to move money between plants.", "bg-[#fdecee]", "border-[#f6c9ce]", "text-[#9c2738]", "text-[#b95a68]"),
     };
 
     private WeatherState CurrentWeather => weatherStates[weatherIndex];

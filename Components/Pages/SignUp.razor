@@ -85,14 +85,26 @@
                 <EditForm Model="@signUpModel" OnValidSubmit="HandleSubmit" class="input-form mt-6">
                     <DataAnnotationsValidator />
 
-                    <div class="field-wrap">
-                        <label for="name">Your name</label>
-                        <InputText id="name" 
-                                   disabled="@isSubmitting"
-                                   class="form-input transition-all disabled:opacity-60" 
-                                   @bind-Value="signUpModel.Name" 
-                                   placeholder="Alex Chen" />
-                        <ValidationMessage For="@(() => signUpModel.Name)" />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="field-wrap">
+                            <label for="first-name">First name</label>
+                            <InputText id="first-name"
+                                       disabled="@isSubmitting"
+                                       class="form-input transition-all disabled:opacity-60"
+                                       @bind-Value="signUpModel.FirstName"
+                                       placeholder="Alex" />
+                            <ValidationMessage For="@(() => signUpModel.FirstName)" />
+                        </div>
+
+                        <div class="field-wrap">
+                            <label for="last-name">Last name</label>
+                            <InputText id="last-name"
+                                       disabled="@isSubmitting"
+                                       class="form-input transition-all disabled:opacity-60"
+                                       @bind-Value="signUpModel.LastName"
+                                       placeholder="Chen" />
+                            <ValidationMessage For="@(() => signUpModel.LastName)" />
+                        </div>
                     </div>
 
                     <div class="field-wrap">

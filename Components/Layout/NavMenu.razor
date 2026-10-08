@@ -1,30 +1,27 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorSprout</a>
-    </div>
-</div>
+<nav class="flex flex-col gap-1 w-64 min-h-screen bg-white border-r border-border p-4">
+    <NavLink href="/" class="flex items-center gap-2 px-3 py-4 mb-2 no-underline">
+        <span class="text-2xl">🌱</span>
+        <span class="text-xl font-bold text-text-main">Sprout</span>
+    </NavLink>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
+    <NavLink href="/" Match="NavLinkMatch.All"
+             class="px-3 py-2 rounded-lg text-[0.95rem] font-medium text-text-muted no-underline transition-colors hover:bg-bg-card hover:text-primary"
+             ActiveClass="bg-bg-card text-primary">
+        Home
+    </NavLink>
+    <NavLink href="feedback"
+             class="px-3 py-2 rounded-lg text-[0.95rem] font-medium text-text-muted no-underline transition-colors hover:bg-bg-card hover:text-primary"
+             ActiveClass="bg-bg-card text-primary">
+        Feedback
+    </NavLink>
+    <NavLink href="sign-in"
+             class="px-3 py-2 rounded-lg text-[0.95rem] font-medium text-text-muted no-underline transition-colors hover:bg-bg-card hover:text-primary"
+             ActiveClass="bg-bg-card text-primary">
+        Sign in
+    </NavLink>
+    <NavLink href="sign-up"
+             class="px-3 py-2 rounded-lg text-[0.95rem] font-medium text-text-muted no-underline transition-colors hover:bg-bg-card hover:text-primary"
+             ActiveClass="bg-bg-card text-primary">
+        Sign up
+    </NavLink>
+</nav>

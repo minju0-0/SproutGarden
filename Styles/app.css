@@ -307,7 +307,7 @@
         @apply mt-3 text-[1.1rem] text-text-muted;
     }
 
-    /* ---------- Four pillars ---------- */
+    /* ---------- Feature pillars ---------- */
     .pillars-grid {
         @apply grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6;
     }
@@ -372,9 +372,6 @@
         @apply block mt-[0.4rem] text-xs text-[#1e6643] font-semibold;
     }
 
-    .advisor-bubble p {
-        @apply text-[0.85rem]! italic text-primary!;
-    }
 
     .weather-demo span {
         @apply block text-[0.85rem] font-semibold mb-2;

@@ -159,7 +159,7 @@
 </div>
 
 @code {
-    private SignInModel formModel = new();
+    private SignInForm formModel = new();
     private bool isLeaving = false;
     private bool showPassword = false;
     private bool isSubmitting = false;
@@ -191,13 +191,4 @@
         Navigation.NavigateTo(url);
     }
 
-    public class SignInModel
-    {
-        [Required(ErrorMessage = "Email address is required.")]
-        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
-        public string Email { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Password is required.")]
-        public string Password { get; set; } = string.Empty;
-    }
 }

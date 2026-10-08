@@ -1,7 +1,6 @@
 @page "/sign-up"
 @rendermode InteractiveServer
 @using System.ComponentModel.DataAnnotations
-@using System.Text.RegularExpressions
 @inject NavigationManager Navigation
 
 <PageTitle>Sign Up — Sprout</PageTitle>
@@ -207,52 +206,28 @@
 </div>
 
 @code {
-    private SignUpFormModel signUpModel = new();
+    private SignUpForm signUpModel = new();
     private bool isLeaving = false;
     private bool showPassword = false;
     private bool isSubmitting = false;
     private string? errorMessage;
 
-    // Password Validation Rules
-    private int passwordScore = 0;
-    private bool hasMinLength => signUpModel.Password.Length >= 8;
-    private bool hasUpper => Regex.IsMatch(signUpModel.Password, @"[A-Z]");
-    private bool hasLower => Regex.IsMatch(signUpModel.Password, @"[a-z]");
-    private bool hasNumber => Regex.IsMatch(signUpModel.Password, @"[0-9]");
-    private bool hasSpecial => Regex.IsMatch(signUpModel.Password, @"[!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?~]");
+    // Password rules live in Models/Forms/PasswordStrength.cs
+    private PasswordStrength strength = PasswordStrength.Evaluate(string.Empty);
+    private int passwordScore => strength.Score;
+    private bool hasMinLength => strength.HasMinLength;
+    private bool hasUpper => strength.HasUpper;
+    private bool hasLower => strength.HasLower;
+    private bool hasNumber => strength.HasNumber;
+    private bool hasSpecial => strength.HasSpecial;
 
     private void OnPasswordInput(ChangeEventArgs e)
     {
         signUpModel.Password = e.Value?.ToString() ?? string.Empty;
-        CalculatePasswordScore(signUpModel.Password);
+        strength = PasswordStrength.Evaluate(signUpModel.Password);
     }
 
-    private void CalculatePasswordScore(string password)
-    {
-        if (string.IsNullOrEmpty(password))
-        {
-            passwordScore = 0;
-            return;
-        }
-
-        int score = 0;
-        if (hasMinLength) score++;
-        if (hasUpper) score++;
-        if (hasLower) score++;
-        if (hasNumber) score++;
-        if (hasSpecial) score++;
-
-        passwordScore = score;
-    }
-
-    private string GetStrengthLabel() => passwordScore switch
-    {
-        0 => "",
-        1 or 2 => "Weak",
-        3 or 4 => "Good",
-        5 => "Strong",
-        _ => ""
-    };
+    private string GetStrengthLabel() => strength.Label;
 
     private string GetStrengthColorClass() => passwordScore switch
     {
@@ -302,17 +277,4 @@
         Navigation.NavigateTo(url);
     }
 
-    public class SignUpFormModel
-    {
-        [Required(ErrorMessage = "Name is required.")]
-        public string Name { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Email address is required.")]
-        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
-        public string Email { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Password is required.")]
-        [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
-        public string Password { get; set; } = string.Empty;
-    }
 }
